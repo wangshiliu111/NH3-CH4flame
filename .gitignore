@@ -1,0 +1,6 @@
+processor*
+postProcessing/
+constant/polyMesh/
+*.log
+*.foam
+*.OpenFOAM

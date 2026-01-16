@@ -1,0 +1,92 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSchemes;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+ddtSchemes
+{
+    default         Euler;
+}
+
+gradSchemes
+{
+    default         Gauss linear;
+}
+
+/*divSchemes
+{
+    default         none;
+    div(phi,U)       Gauss linearUpwind grad(U);
+
+    div(phid,p)      Gauss limitedLinear 1;
+    div(phi,K)       Gauss limitedLinear 1;
+    div(phi,k)       Gauss limitedLinear 1;
+    div(phi,epsilon) Gauss limitedLinear 1;
+    div(U)           Gauss limitedLinear 1;
+    div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
+    div(phi,Yi_h)    Gauss limitedLinear 1;
+}*/
+divSchemes
+{
+    default         none;
+/*
+    div(phi,U)       bounded Gauss upwind;//Gauss linearUpwind grad(U);
+    div(phid,p)      Gauss linear;
+    div(phi,K)       Gauss linearUpwind default;
+    div(phi,k)       Gauss linearUpwind default;
+    div(phi,epsilon) Gauss linear;
+    div(U)           Gauss linear;
+    div(((rho*nuEff)*dev2(T(grad(U))))) Gauss linear;
+    div(phi,Yi_h)    Gauss upwind;
+    div(phi,Ha) Gauss upwind;*/
+
+    div(phi,U)          Gauss limitedLinearV 1;
+    div(phi,Yi)         Gauss limitedLinear01 1;
+    div(phi,h)          Gauss limitedLinear 1;
+    div(phi,K)          Gauss limitedLinear 1;
+    div(phid,p)         Gauss limitedLinear 1;
+    div(phi,epsilon)    Gauss limitedLinear 1;
+    div(phi,Yi_h)       Gauss limitedLinear01 1;
+    div(phi,k)          Gauss limitedLinear 1;
+    div(((rho*nuEff)*dev2(T(grad(U)))))     Gauss linear;
+    div(phi,Z) Gauss upwind;
+    div(phi,PV) Gauss upwind;
+    div(phi,Z_PV_Ha) Gauss upwind;
+}
+
+
+laplacianSchemes
+{
+    default         Gauss linear orthogonal;
+}
+
+interpolationSchemes
+{
+    default         linear;
+}
+
+snGradSchemes
+{
+    default         orthogonal;
+}
+
+fluxRequired
+{
+    default         no;
+    p               yes;
+}
+
+
+// ************************************************************************* //

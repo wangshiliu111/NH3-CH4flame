@@ -1,0 +1,172 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+| =========                 |                                                 |
+| \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox           |
+|  \\    /   O peration     | Version:  2.3.0                                 |
+|   \\  /    A nd           | Web:      www.OpenFOAM.org                      |
+|    \\/     M anipulation  |                                                 |
+\*---------------------------------------------------------------------------*/
+FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "system";
+    object      fvSolution;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+/*
+solvers
+{
+    rho
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-05;
+        relTol          0.1;
+    }
+
+    rhoFinal
+    {
+        $rho;
+        tolerance       1e-05;
+        relTol          0;
+    }
+
+    "(U|k|epsilon|Z|PV|varZ|varPV)"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-8;
+        relTol          0;
+        /*solver          smoothSolver;
+        smoother        symGaussSeidel;
+        tolerance       1e-06;
+        relTol          0.1;
+    }
+
+    p
+    {
+        solver          GAMG;
+        tolerance       0;
+        relTol          0.1;
+        smoother        GaussSeidel;
+        nPreSweeps      0;
+        nPostSweeps     2;
+        cacheAgglomeration true;
+        nCellsInCoarsestLevel 10;
+        agglomerator    faceAreaPair;
+        mergeLevels     1;
+    }
+
+    pFinal
+    {
+        $p;
+        tolerance       1e-06;
+        relTol          0;
+    }
+
+    "(U|k|epsilon|varZ|PV|varPV)Final"
+    {
+        $U;
+        tolerance       1e-06;
+        relTol          0;
+    }
+
+    "(Yi|O2|N2|H2O)"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-6;
+        relTol          0;
+    }
+
+    "(h|Ha)"
+    {
+        $Yi;
+        relTol          0.1;
+    }
+
+    "(h|Ha)Final"
+    {
+        $Yi;
+    }
+    "(Yi|Z)Final"
+    {
+        $Yi;
+    }
+}*/
+
+solvers
+{
+    "rho.*"
+    {
+        solver          diagonal;
+    }
+
+    p
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-6;
+        relTol          0.01;
+    }
+
+    pFinal
+    {
+        $p;
+        relTol          0;
+    }
+
+    "(U|h|k|epsilon)"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-6;
+        relTol          0.1;
+    }
+
+    "(U|h|k|epsilon)Final"
+    {
+        $U;
+    }
+
+    "Yi.*"
+    {
+        solver          PBiCGStab;
+        preconditioner  DILU;
+        tolerance       1e-8;
+        relTol          0.1;
+    }
+
+    "G.*"
+    {
+        solver          PCG;
+        preconditioner  DIC;
+        tolerance       1e-5;
+        relTol          0.1;
+    }
+
+    GFinal
+    {
+        $G;
+        relTol          0;
+    }
+}
+
+PIMPLE
+{
+    transonic       no;
+    nCorrectors     2;
+    nNonOrthogonalCorrectors 0;
+    momentumPredictor yes;
+}
+
+relaxationFactors
+{
+    equations
+    {
+        ".*Final"       1;
+    }
+}
+
+// ************************************************************************* //

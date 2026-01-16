@@ -1,0 +1,25 @@
+/*--------------------------------*- C++ -*----------------------------------*\
+  =========                 |
+  \\      /  F ield         | OpenFOAM: The Open Source CFD Toolbox
+   \\    /   O peration     | Website:  https://openfoam.org
+    \\  /    A nd           | Version:  dev
+     \\/     M anipulation  |
+\*---------------------------------------------------------------------------*/FoamFile
+{
+    version     2.0;
+    format      ascii;
+    class       dictionary;
+    location    "constant";
+    object      combustionProperties;
+}
+// * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * * //
+
+combustionModel laminar;//FGM;
+
+FGMCoeffs
+{
+    table2Y off;//if it is on, all the species are lookup during runTime. If it is off, only Z, PV, and extraTableVariableNames are looked-up during runTime. You can use posProcess to get species after the simulation
+    extraTableVariableNames ("HRR");
+}
+
+// ************************************************************************* //
