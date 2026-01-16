@@ -14,7 +14,7 @@ FoamFile
     object          controlDict;
 }
 
-libs            ( "libZYcombustionModels.so"  "libpureChemistryModel.so");
+libs            ("libpureChemistryModel.so");
 
 application     reactingFoam;
 
