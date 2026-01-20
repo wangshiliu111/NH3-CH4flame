@@ -1,4 +1,4 @@
-# SJTU Combustor Simulation - FRC Case with Fast Chemistry                     
+# SJTU Combustor Simulation - FRC Case with Fast Chemistry  Solver                   
                                                                                 
  ## Overview                                                                    
  This case simulates the SJTU (Shanghai Jiao Tong University) combustor using   
@@ -20,7 +20,7 @@
    - Model: k-epsilon                                                           
    - Standard k-epsilon coefficients (C1=1.44, C2=1.92)                         
  - **Chemistry Model**: Laminar (fast chemistry solver)
- - fast chemistry solver: [http://combustion.berkeley.edu/gri-mech/](https://github.com/yuchenzh/pureChemistryModel-of7)                                                                      
+ - fast chemistry solver: [https://github.com/yuchenzh/pureChemistryModel-of7](https://github.com/yuchenzh/pureChemistryModel-of7)]                                                               
                                                                                 
       
                                                                                 
@@ -31,7 +31,8 @@
                                                                                 
  # Or run in parallel                                                           
  decomposePar                                                                   
- mpirun -np <ncores> reactingFoam -parallel                                                          
+ mpirun -np <ncores> reactingFoam -parallel
+ ```                                                     
                                                                                 
  ### Prerequisites                                                              
  - OpenFOAM 7 or compatible version                                             
