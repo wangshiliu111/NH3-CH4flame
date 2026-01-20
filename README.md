@@ -11,16 +11,14 @@
  ### Flow Configuration                                                         
  - **Equivalence Ratio (φ)**: 0.9 (lean combustion)                             
  - **Mixture Parameter (ζ)**: 0.2                                               
- - **Fuel**: CH4/Air mixture with Okafor chemistry                            
+ - **Fuel**: CH4/NH3/Air mixture with Okafor chemistry                            
  - **Inlet Configuration**: Dual-fuel injection (main inlet + pilot)            
                                                                                 
  ### Numerical Setup                                                            
  - **Solver**: reactingFoam                                                     
- - **Turbulence Model**: RAS (Reynolds-Averaged Simulation)                     
-   - Model: k-epsilon                                                           
-   - Standard k-epsilon coefficients (C1=1.44, C2=1.92)                         
+ - **Turbulence Model**: RAS (Reynolds-Averaged Simulation)                                           
  - **Chemistry Model**: Laminar (fast chemistry solver)
- - fast chemistry solver: [https://github.com/yuchenzh/pureChemistryModel-of7](https://github.com/yuchenzh/pureChemistryModel-of7)]                                                               
+ - fast chemistry solver: [https://github.com/yuchenzh/pureChemistryModel-of7](https://github.com/yuchenzh/pureChemistryModel-of7)                                                             
                                                                                 
       
                                                                                 
